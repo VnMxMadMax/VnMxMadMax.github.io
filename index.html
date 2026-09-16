@@ -191,6 +191,68 @@
   footer{border-top:1px solid var(--line);padding-block:26px;font:400 12px/1.5 var(--mono);color:#5F6380}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
+  /* ask my AI */
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .ask{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:stretch;position:relative;z-index:1}
+  .chat{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:600px}
+  .chat-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px 12px;padding:14px 18px;border-bottom:1px solid var(--line);font:400 12px/1.3 var(--mono);color:var(--muted)}
+  .chat-head b{color:var(--ink);font-weight:500}
+  .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pass);box-shadow:0 0 10px var(--pass);margin-right:8px;vertical-align:1px}
+  .msgs{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:14px;max-height:470px;scroll-behavior:smooth}
+  .msg{max-width:90%;padding:12px 15px;border-radius:14px;font-size:15px;line-height:1.6}
+  .msg p{margin:0 0 8px}
+  .msg p:last-of-type{margin-bottom:0}
+  .msg.bot{align-self:flex-start;background:var(--raised);border:1px solid var(--line);border-top-left-radius:4px;color:#D5D7E6}
+  .msg.user{align-self:flex-end;background:var(--accent);color:#fff;border-top-right-radius:4px;white-space:pre-wrap;overflow-wrap:anywhere}
+  .cite{font:500 10px/1 var(--mono);color:var(--glow);margin-left:4px}
+  .sources{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+  .sources .lbl{font:500 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+  .sources a{font:400 11px/1.2 var(--mono);padding:6px 8px;border-radius:6px;background:rgba(109,111,242,.12);color:#C9CAFF;text-decoration:none}
+  .sources a:hover{background:rgba(109,111,242,.25)}
+  .dots{display:inline-flex;gap:5px;padding:4px 0}
+  .dots i{width:6px;height:6px;border-radius:50%;background:var(--glow);animation:pulse 1s ease-in-out infinite}
+  .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+  @keyframes pulse{50%{opacity:.25;transform:translateY(-3px)}}
+  .chips-q{display:flex;flex-wrap:wrap;gap:8px;padding:4px 18px 14px}
+  .chips-q button{font:500 13px/1.2 var(--body);padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:#B9BCD0;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+  .chips-q button:hover{border-color:var(--accent);color:var(--ink);background:rgba(109,111,242,.08)}
+  .composer{display:flex;gap:10px;align-items:flex-end;padding:14px;border-top:1px solid var(--line);background:rgba(10,11,16,.45)}
+  .composer textarea{flex:1;resize:none;min-height:46px;max-height:120px;background:var(--ground);border:1px solid var(--line);border-radius:10px;color:var(--ink);font:400 15px/1.5 var(--body);padding:11px 14px}
+  .composer textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(109,111,242,.2)}
+  .composer textarea::placeholder{color:#5F6380}
+  .send{flex:none;width:46px;height:46px;border-radius:10px;border:0;background:var(--accent);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .2s,opacity .2s}
+  .send:hover{background:#7C7EF7}
+  .send:disabled{opacity:.45;cursor:default}
+  .send svg{width:18px;height:18px}
+  .trace2{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:16px;min-width:0}
+  .t-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .state{padding:6px 9px;border-radius:999px;border:1px solid var(--line);letter-spacing:.06em}
+  .state.run{color:var(--glow);border-color:currentColor}
+  .state.done{color:var(--pass);border-color:currentColor}
+  .state.refused{color:var(--wip);border-color:currentColor}
+  .step{display:grid;grid-template-columns:26px 1fr;gap:8px;min-width:0}
+  .step>div{min-width:0}
+  .step-n{font:500 12px/1.5 var(--mono);color:var(--accent)}
+  .step h4{margin:0 0 8px;font:600 13px/1.5 var(--body);color:var(--ink)}
+  .terms{display:flex;flex-wrap:wrap;gap:5px}
+  .terms span{font:400 11px/1 var(--mono);padding:5px 7px;border-radius:5px;background:var(--raised);border:1px solid var(--line);color:var(--ink)}
+  .terms span.x{color:var(--muted);border-style:dashed}
+  .hits{display:grid;gap:9px}
+  .hit{display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:center;font:400 12px/1.3 var(--mono);color:var(--muted)}
+  .hit .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hit .s{font-variant-numeric:tabular-nums}
+  .hit .bar{grid-column:1/-1;position:relative;height:4px;border-radius:2px;background:var(--raised)}
+  .hit .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:#343853;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .hit .bar::after{content:"";position:absolute;top:-3px;bottom:-3px;left:var(--th,17%);width:1px;background:var(--wip);opacity:.8}
+  .hit.pick{color:var(--ink)}
+  .hit.pick .bar i{background:linear-gradient(90deg,var(--accent),var(--glow))}
+  .muted-note{font:400 12px/1.55 var(--mono);color:#6B6F8C;margin:0}
+  #kbmap{display:block;width:100%;height:190px;border-radius:10px;background:var(--ground);border:1px solid var(--line)}
+  .t-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+  .t-stats div{font:400 10px/1.3 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .t-stats b{display:block;font:700 18px/1.3 var(--display);letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+  .spark{width:7px;height:7px;border-radius:50%;background:var(--pass);box-shadow:0 0 10px var(--pass)}
+
   /* reveal (content visible by default; only hidden once JS is running) */
   .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
   .js .reveal.in{opacity:1;transform:none}
@@ -234,6 +296,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#stack">Stack</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#ask">Ask my AI</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -250,6 +313,7 @@
       <p class="intro">I'm <b>Hammadur Rahman</b>. I build agents and RAG pipelines in Python, then put deterministic checks under the model's output so a wrong answer gets caught before a user sees it.</p>
       <div class="actions">
         <a class="btn primary" href="#projects">View projects →</a>
+        <a class="btn" href="#ask"><span class="spark" aria-hidden="true"></span>Ask my AI</a>
         <a class="btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=hammadurrahman171@gmail.com" target="_blank" rel="noopener" data-email="hammadurrahman171@gmail.com">Get in touch</a>
       </div>
       <div class="tags"><span>LangGraph</span><span>RAG</span><span>FastAPI</span><span>Docker</span><span>Python</span></div>
@@ -378,6 +442,42 @@
           </div></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="ask">
+  <div class="ghost" aria-hidden="true">ASK ME</div>
+  <div class="wrap rel">
+    <div class="head reveal"><p class="kicker">Live RAG demo</p><h2>Ask my AI assistant</h2><p>Ask anything about my work. It answers only from my real experience and projects, and the trace shows exactly how each answer was retrieved.</p></div>
+    <div class="ask reveal">
+      <div class="chat">
+        <div class="chat-head"><span><i class="live-dot" aria-hidden="true"></i><b>hammadur.assistant</b></span><span>grounded mode · runs in your browser</span></div>
+        <div class="msgs" id="ask-msgs" aria-live="polite">
+          <div class="msg bot"><p>Hi, I'm Hammadur's portfolio assistant. I answer only from his real experience and projects, so if something isn't in my knowledge base, I'll tell you instead of guessing.</p><p>Pick a question below or type your own.</p></div>
+        </div>
+        <div class="chips-q" id="ask-chips">
+          <button type="button">Tell me about Sentinel AI</button>
+          <button type="button">What has he built with RAG?</button>
+          <button type="button">What does he do at Blackcoffer?</button>
+          <button type="button">How does he handle hallucinations?</button>
+          <button type="button">Is he open to relocation?</button>
+          <button type="button">How does this assistant work?</button>
+        </div>
+        <form class="composer" id="ask-form">
+          <label for="ask-input" class="sr">Ask a question about Hammadur</label>
+          <textarea id="ask-input" rows="1" maxlength="300" placeholder="Ask about projects, skills, experience…"></textarea>
+          <button class="send" id="ask-send" type="submit" aria-label="Send question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+      </div>
+      <aside class="trace2" aria-label="Retrieval trace">
+        <div class="t-head"><span>Retrieval trace</span><span class="state" id="t-state">Idle</span></div>
+        <div class="step"><span class="step-n">01</span><div><h4>Query terms</h4><div class="terms" id="t-terms"><span class="x">waiting for a question</span></div></div></div>
+        <div class="step"><span class="step-n">02</span><div><h4>Vector search · cosine · top 5</h4><div class="hits" id="t-hits"><p class="muted-note">Similarity scores appear here. A chunk is used only if its bar passes the amber threshold line.</p></div></div></div>
+        <canvas id="kbmap" aria-hidden="true"></canvas>
+        <div class="step"><span class="step-n">03</span><div><h4>Answer</h4><p class="muted-note" id="t-compose">Assembled only from chunks above the threshold. No LLM call, so no invented facts.</p></div></div>
+        <div class="t-stats"><div><b id="stat-chunks">–</b>chunks</div><div><b id="stat-dims">–</b>dims</div><div><b id="stat-terms">–</b>terms</div></div>
+      </aside>
     </div>
   </div>
 </section>
@@ -699,6 +799,388 @@
   } else {
     draw(performance.now());
   }
+})();
+</script>
+
+<script>
+/* ---------- Ask my AI: an in-browser RAG assistant ---------- */
+(function(){
+/*ENGINE-START*/
+// Knowledge base: one fact per chunk, written from Hammadur's resume and public repos.
+// k = extra keywords (metadata enrichment) so short questions still find the right chunk.
+var KB = [
+  {id:'about-summary', tag:'about', title:'Who he is', src:'#about',
+   k:'who is hammadur introduction overview profile summary background yourself engineer',
+   t:"Hammadur Rahman is an AI Engineer based in New Delhi with over a year of experience building production LLM systems: AI agents, RAG pipelines, multi-stage LLM pipelines, and the evaluation harnesses that check them."},
+  {id:'about-different', tag:'about', title:'What sets him apart', src:'#about',
+   k:'different unique special strength strengths why hire stand out approach philosophy value',
+   t:"He focuses on the gap between a demo and a system you can trust. A model checking its own work misses things, so he layers deterministic Python validators under LLM output and builds evaluation harnesses that score results before anything acts on them."},
+  {id:'hallucination', tag:'about', title:'Handling hallucinations', src:'#about',
+   k:'hallucination hallucinations hallucinate accuracy reliable reliability trust grounding grounded guardrails validation evaluate evaluating evaluation llm llms wrong answers quality safety',
+   t:"His approach to hallucinations: ground answers in retrieved sources, measure retrieval and answers against an evaluation set, add guardrails, and put deterministic checks under the model so a wrong answer is caught before a user sees it. This assistant follows the same rule and refuses when retrieval is weak."},
+  {id:'assistant', tag:'about', title:'How this assistant works', src:'#ask',
+   k:'how this assistant chatbot bot works made you vector search cosine embeddings hashing llm api key browser',
+   t:"This assistant is a small RAG system running entirely in your browser. Portfolio facts are split into chunks and turned into 2048-dimension hashed vectors; your question is embedded the same way, matched by cosine similarity, and the answer is assembled only from chunks above a relevance threshold. There's no LLM and no API key, so it can't invent facts."},
+  {id:'work-role', tag:'work', title:'Current role at Blackcoffer', src:'#experience',
+   k:'work job current role company employer experience position title blackcoffer employed',
+   t:"Since June 2025 he has worked at Blackcoffer as an AI Engineer / Data Scientist, remote from New Delhi, building LLM agents, RAG pipelines, and the APIs that serve them for client workflows."},
+  {id:'work-okr', tag:'work', title:'OKR/KPI LLM pipeline', src:'#experience',
+   k:'okr kpi pipeline multi stage enterprise workforce planning cascade department objectives architect architected llm',
+   t:"At Blackcoffer he architected the OKR/KPI cascade for an enterprise workforce-planning platform: company objectives, routing KPIs to departments, and generating department-level OKRs, live-tested end to end."},
+  {id:'work-reconcile', tag:'work', title:'Cost reconciliation engine', src:'#experience',
+   k:'cost duration reconciliation engine deterministic tolerance audit auditable model validators',
+   t:"He built a deterministic cost and duration reconciliation engine that turns task-action sequences into an auditable cost model held to a ±15% tolerance, with Python validators catching errors the LLM missed when checking its own output."},
+  {id:'work-finance', tag:'work', title:'Financial reporting API', src:'#experience',
+   k:'finance financial reporting us-gaap gaap accounting balance sheet income statement api fintech',
+   t:"He built a financial-reporting automation API that maps operational activity data to US-GAAP-aligned balance sheet and income statement line items, with cited accounting references."},
+  {id:'work-unity', tag:'work', title:'Unity ML-Agents compiler', src:'#experience',
+   k:'unity ml-agents reinforcement learning rl ppo onnx compiler payload harness simulation environment',
+   t:"He built a deterministic Unity ML-Agents scene compiler (PPO, ONNX) for a reinforcement-learning training environment. A dual-output redesign cut the payload by 60%+, verified by a 32-check harness against a partner team's integration spec."},
+  {id:'work-rag', tag:'work', title:'Production RAG at work', src:'#experience',
+   k:'production rag accuracy retrieval tuning prompt engineering client knowledge langchain langgraph gpt-4 chromadb agents shipped',
+   t:"He shipped LangGraph and LangChain agents and RAG pipelines into live client knowledge workflows, reaching 90%+ answer accuracy through retrieval tuning, prompt engineering, guardrails, and systematic response evaluation."},
+  {id:'work-api', tag:'work', title:'APIs and deployment', src:'#experience',
+   k:'fastapi api apis rest docker ci cd github actions deploy deployment uptime monitoring logging production requests scale',
+   t:"He exposes these systems as async FastAPI services, containerised with Docker and deployed through GitHub Actions CI/CD, sustaining 99%+ uptime across 1,000+ daily requests with structured logging, output-quality monitoring, and alerting."},
+  {id:'work-data', tag:'work', title:'Data ingestion and BigQuery', src:'#experience',
+   k:'data engineering engineer ingestion etl pipeline bigquery gcp looker studio dashboards xandr adsense adpushup records team lead leadership led',
+   t:"He engineered a multi-source ingestion layer from the Xandr, Google AdSense, and AdPushup APIs into BigQuery on GCP, processing 1.79M+ records for Looker Studio dashboards used in weekly reporting. He led a sub-team of two."},
+  {id:'proj-sentinel', tag:'projects', title:'Sentinel AI · overview', src:'#projects',
+   k:'sentinel ai project projects devops incident response multi agent multi-agent monitoring failure flagship built',
+   t:"Sentinel AI is his multi-agent incident-response system. A team of agents watches a service, spots cascading failure signals, and drafts a remediation, and an evaluation harness scores the agents' output before anything is acted on."},
+  {id:'proj-sentinel-arch', tag:'projects', title:'Sentinel AI · architecture', src:'#projects',
+   k:'sentinel architecture design agents pipeline langgraph react loop monitor diagnose remediate postmortem websockets how work',
+   t:"Sentinel AI runs as a pipeline of LangGraph agents (monitor, diagnose, remediate, postmortem), each using a ReAct loop. Live updates stream to the UI over WebSockets from a FastAPI backend, with ChromaDB for memory, all containerised with Docker."},
+  {id:'proj-sentinel-eval', tag:'projects', title:'Sentinel AI · evals and guardrails', src:'#projects',
+   k:'sentinel evaluation eval evals harness cost guardrails langsmith tracing debugging test testing quality github repo code',
+   t:"In Sentinel AI, an automated evaluation harness gates agent output, cost guardrails cap spending on every LLM call, and LangSmith tracing makes each agent step debuggable. The code is public at github.com/VnMxMadMax/devops-agent."},
+  {id:'proj-rag', tag:'projects', title:'RAG platform · overview', src:'#projects',
+   k:'rag rag-based chatbot project projects built build documents document pdf youtube url upload chat notes openai gemini cohere knowledge platform faiss github repo code',
+   t:"His RAG Knowledge Platform lets you upload a PDF, a web page, or a YouTube video and chat with it using OpenAI, Gemini, or Cohere, with separate memory for each conversation. It's built with FastAPI, LangChain, and FAISS; the code is at github.com/VnMxMadMax/RAG-Based-Chatbot."},
+  {id:'proj-rag-refactor', tag:'projects', title:'RAG platform · multi-user refactor', src:'#projects',
+   k:'refactor bug fix session isolation multi user single user state api keys collision challenge challenges problem solved debugging story hardest',
+   t:"A key fix in the RAG platform: it assumed a single user, with one global vector store and API keys held process-wide, so two users collided. He moved all mutable state (vector stores, API keys, conversation memory) to per-session storage, with each session's FAISS index saved separately."},
+  {id:'proj-rag-v2', tag:'projects', title:'RAG platform · V2 in progress', src:'#projects',
+   k:'v2 roadmap next current currently working building now pgvector supabase hybrid search reranking citations multi tenant tenancy redis future',
+   t:"He is currently building V2 of the RAG platform: moving from FAISS to Supabase pgvector for persistent embeddings, adding hybrid search (vectors plus Postgres full-text) with reranking, cited sources, and workspace-level data isolation."},
+  {id:'skills-genai', tag:'skills', title:'Skills · GenAI and agents', src:'#stack',
+   k:'skills skill tech stack tools technologies genai generative llm llms agents langgraph langchain openai gemini claude crewai autogen mcp tool calling prompt frameworks',
+   t:"GenAI and agents: LangGraph, LangChain, OpenAI GPT-4, Google Gemini, Anthropic Claude, CrewAI, and AutoGen; tool calling and MCP (Model Context Protocol); prompt engineering, guardrails, and LLM evaluation."},
+  {id:'skills-retrieval', tag:'skills', title:'Skills · retrieval', src:'#stack',
+   k:'skills skill tech stack retrieval vector database databases embeddings chunking faiss chromadb pgvector pinecone',
+   t:"Retrieval: RAG architectures, embeddings and chunking, FAISS, ChromaDB, pgvector, and Pinecone, plus retrieval tuning and evaluation."},
+  {id:'skills-backend', tag:'skills', title:'Skills · backend and ops', src:'#stack',
+   k:'skills skill tech stack backend python fastapi flask async websockets docker ci cd github actions aws gcp supabase redis cloud devops languages',
+   t:"Backend and ops: Python (advanced), FastAPI, Flask, async, WebSockets and REST API design, Docker, GitHub Actions CI/CD, GCP, AWS, Supabase, and Redis, with structured logging and monitoring."},
+  {id:'skills-data', tag:'skills', title:'Skills · data and ML', src:'#stack',
+   k:'skills skill tech stack data ml machine learning sql postgresql mysql bigquery pandas numpy scikit-learn xgboost shap java languages',
+   t:"Data and ML: SQL (PostgreSQL, BigQuery, MySQL), Pandas, NumPy, scikit-learn, XGBoost, and SHAP explainability. He also knows Java fundamentals."},
+  {id:'edu', tag:'education', title:'Education', src:'#experience',
+   k:'education degree college university btech b.tech computer science cgpa ggsipu delhi technical campus graduate graduation study studied dsa',
+   t:"He holds a B.Tech in Computer Science from Delhi Technical Campus (GGSIPU), 2021 to 2025, with a CGPA of 7.7, and has solved 200+ DSA problems on GeeksforGeeks."},
+  {id:'certs', tag:'education', title:'Certifications', src:'#experience',
+   k:'certifications certification certificates certificate ibm coursera courses course learning',
+   t:"His certifications, all from IBM on Coursera: RAG and Agentic AI (Professional Certificate); Agentic AI with LangGraph, CrewAI, AutoGen and BeeAI; and Build Multimodal Generative AI Applications."},
+  {id:'avail', tag:'contact', title:'Availability', src:'#contact',
+   k:'available availability hire hiring open job jobs roles relocate relocation remote onsite on-site notice period join joining location based live',
+   t:"He is open to AI Engineer and LLM engineering roles, remote or on-site, and happy to relocate anywhere in India. He is based in New Delhi and his notice period is 15 days."},
+  {id:'contact', tag:'contact', title:'Contact', src:'#contact',
+   k:'contact email mail reach linkedin github resume cv download get in touch message connect',
+   t:"The best way to reach him is email: hammadurrahman171@gmail.com. He's also on LinkedIn (linkedin.com/in/hammadur-rahman02) and GitHub (github.com/VnMxMadMax), and his resume is behind the Resume button at the top of this page."}
+];
+
+var DIM = 2048, MIN_SCORE = 0.15, REL = 0.65, MAX_PICK = 3, TOP_N = 5;
+var STOP = new Set(('a an the is are am was were be been being of to in on for and or with by at from as it its this that these those he his him she her they them their ' +
+  'what which who whom whose how does do did done can could would should will shall may might must i me my you your yours tell about any some has have had ' +
+  'there here please give show me us we our know anything something more much very really just also so if then than into out up down over like get got').split(' '));
+// query-side synonym expansion (weighted lower than the user's own words)
+var SYN = {
+  job:'work role company experience', work:'role company experience', working:'work role company', employer:'company blackcoffer',
+  company:'blackcoffer work', experience:'work role', career:'work experience', current:'currently role',
+  hallucination:'grounding guardrails validators evaluation', hallucinate:'hallucination grounding guardrails', accurate:'accuracy', wrong:'hallucination accuracy',
+  eval:'evaluation harness', evaluate:'evaluation harness', evaluating:'evaluation harness', evals:'evaluation harness', testing:'evaluation harness', test:'evaluation harness',
+  rag:'retrieval chunks embeddings vector', retrieval:'rag vector search', vector:'embeddings retrieval', embedding:'embeddings vector',
+  agent:'agents langgraph multi-agent', agents:'agent langgraph multi-agent', agentic:'agents langgraph multi-agent', llm:'model gpt openai',
+  stack:'skills tools technologies', tech:'skills technologies stack', tools:'skills stack', technologies:'skills stack', skill:'skills',
+  know:'skills', languages:'python sql java skills', language:'python sql java',
+  contact:'email reach linkedin', email:'contact mail', hire:'available hiring roles contact', hiring:'available hire roles',
+  relocate:'relocation location', relocation:'relocate location', location:'based delhi relocate', where:'location based', move:'relocate relocation',
+  notice:'available join', join:'notice available', remote:'relocate available',
+  college:'education degree university', degree:'education btech', university:'education degree', study:'education degree', graduate:'education degree',
+  certificate:'certifications ibm', certified:'certifications ibm', course:'certifications',
+  project:'projects sentinel rag', projects:'sentinel rag built', built:'projects build', build:'projects built', portfolio:'projects',
+  devops:'sentinel incident monitoring', incident:'sentinel monitoring', monitoring:'sentinel observability',
+  deploy:'deployment docker ci', deployment:'docker ci deploy', docker:'deployment container', cloud:'aws gcp', aws:'cloud', gcp:'cloud bigquery',
+  data:'bigquery sql pipeline', sql:'bigquery postgresql', ml:'machine learning xgboost', python:'fastapi backend', backend:'fastapi api python',
+  resume:'cv contact download', cv:'resume contact', challenge:'problem bug refactor', difficult:'challenge problem', hardest:'challenge problem',
+  bot:'assistant chatbot', langgraph:'agents multi-agent skills', langchain:'rag agents skills', used:'skills experience', use:'skills experience', using:'skills experience', chatbot:'assistant bot rag', assistant:'chatbot bot', mcp:'tool calling protocol', blackcoffer:'work role company'
+};
+
+function fnv(s){ var h = 2166136261; for (var i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function stem(w){
+  if (w.length > 4){
+    if (/ies$/.test(w)) return w.slice(0, -3) + 'y';
+    if (/ing$/.test(w) && w.length > 5) return w.slice(0, -3);
+    if (/ed$/.test(w) && w.length > 5) return w.slice(0, -2);
+    if (/s$/.test(w) && !/ss$/.test(w)) return w.slice(0, -1);
+  }
+  return w;
+}
+function tokenize(s){
+  var out = [];
+  (s.toLowerCase().replace(/['’]/g, '').match(/[a-z0-9][a-z0-9+#.\-]*/g) || []).forEach(function(tok){
+    tok = tok.replace(/[.\-]+$/, '');
+    if (!tok) return;
+    out.push(tok);
+    if (/[.\-]/.test(tok)) tok.split(/[.\-]+/).forEach(function(p){ if (p) out.push(p); });
+  });
+  return out.filter(function(w){ return !STOP.has(w); });
+}
+function features(text, expand){
+  var f = new Map(), words = [], syn = [];
+  function add(key, w){ f.set(key, (f.get(key) || 0) + w); }
+  tokenize(text).forEach(function(w){
+    var st = stem(w);
+    words.push(st); add('w:' + st, 1);
+    if (w.length > 3){ var p = '^' + w + '$'; for (var i = 0; i + 3 <= p.length; i++) add('c:' + p.substr(i, 3), 0.05); }
+    var s = expand && (SYN[w] || SYN[st]);
+    if (s) s.split(' ').forEach(function(x){ var sx = stem(x); syn.push(sx); add('w:' + sx, 0.45); });
+  });
+  return {f:f, words:words, syn:syn};
+}
+
+var N = KB.length, DF = new Map();
+var docF = KB.map(function(c){ return features(c.title + ' ' + c.k + ' ' + c.k + ' ' + c.t, false).f; });
+docF.forEach(function(f){ f.forEach(function(v, key){ DF.set(key, (DF.get(key) || 0) + 1); }); });
+function idf(key){ return Math.log((N + 1) / ((DF.get(key) || 0) + 1)) + 1; }
+function toVec(f, queryMode){
+  var v = new Float32Array(DIM), norm = 0, i;
+  f.forEach(function(tf, key){
+    if (queryMode && !DF.has(key)) return;           // unseen terms can't match anything
+    var h = fnv(key), w = (tf >= 1 ? 1 + Math.log(tf) : tf) * idf(key);
+    v[(h >>> 1) % DIM] += (h & 1) ? w : -w;           // signed feature hashing
+  });
+  for (i = 0; i < DIM; i++) norm += v[i] * v[i];
+  norm = Math.sqrt(norm);
+  if (norm) for (i = 0; i < DIM; i++) v[i] /= norm;
+  return {v:v, norm:norm};
+}
+var DV = docF.map(function(f){ return toVec(f, false).v; });
+var VOCAB = 0; DF.forEach(function(v, key){ if (key.charAt(0) === 'w') VOCAB++; });
+
+function uniq(a){ return a.filter(function(x, i){ return a.indexOf(x) === i; }); }
+function search(q){
+  var t0 = performance.now();
+  if (/\b(assistant|chatbot|bot|this site|you)\b/i.test(q)) q = q.replace(/\bwork(s|ing)?\b/ig, 'function');
+  var qf = features(q, true), qv = toVec(qf.f, true);
+  var hits = KB.map(function(c, i){
+    var s = 0; if (qv.norm) for (var d = 0; d < DIM; d++) s += qv.v[d] * DV[i][d];
+    return {c:c, i:i, s:Math.max(0, s)};
+  }).sort(function(a, b){ return b.s - a.s; });
+  var top = hits.slice(0, TOP_N), best = top[0].s;
+  var picked = top.filter(function(h){ return h.s >= MIN_SCORE && h.s >= best * REL; }).slice(0, MAX_PICK);
+  var terms = uniq(qf.words).filter(function(w){ return DF.has('w:' + w); });
+  var syn = uniq(qf.syn).filter(function(w){ return DF.has('w:' + w) && terms.indexOf(w) < 0; });
+  return {top:top, picked:picked, best:best, terms:terms, syn:syn, ms:performance.now() - t0};
+}
+var ENGINE = {search:search, KB:KB, DIM:DIM, MIN:MIN_SCORE, VOCAB:VOCAB, fnv:fnv};
+/*ENGINE-END*/
+
+  var $ = function(id){ return document.getElementById(id); };
+  var msgs = $('ask-msgs'), form = $('ask-form'), input = $('ask-input'), sendBtn = $('ask-send');
+  if (!msgs) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var busy = false;
+  var SCALE = 0.7; // score that fills a bar completely
+
+  $('stat-chunks').textContent = KB.length;
+  $('stat-dims').textContent = DIM;
+  $('stat-terms').textContent = VOCAB;
+
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function scrollDown(){ msgs.scrollTop = msgs.scrollHeight; }
+
+  /* ----- mini vector map of the knowledge base ----- */
+  var map = (function(){
+    var cv = $('kbmap'), ctx = cv.getContext('2d'), W = 0, H = 0;
+    var CENT = {about:[.17,.33], work:[.5,.3], projects:[.83,.33], skills:[.17,.74], education:[.5,.76], contact:[.83,.74]};
+    var P = KB.map(function(c){
+      var h = fnv(c.id), a = (h % 628) / 100, r = .035 + ((h >>> 10) % 100) / 100 * .06, ce = CENT[c.tag];
+      return {x:Math.min(.95, Math.max(.05, ce[0] + Math.cos(a) * r * 1.4)), y:Math.min(.9, Math.max(.12, ce[1] + Math.sin(a) * r * 1.6))};
+    });
+    var q = {x:.5, y:.52}, res = null, raf = 0;
+    function size(){
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw();
+    }
+    function draw(){
+      ctx.clearRect(0, 0, W, H);
+      ctx.font = '500 9px "JetBrains Mono", Consolas, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(139,143,168,.5)';
+      Object.keys(CENT).forEach(function(k){
+        var y = CENT[k][1] < .5 ? 14 : H - 7;
+        ctx.fillText(k.toUpperCase(), CENT[k][0] * W, y);
+      });
+      var picked = new Set(res && res.picked ? res.picked.map(function(h){ return h.i; }) : []);
+      var near = new Set(res && res.top ? res.top.map(function(h){ return h.i; }) : []);
+      if (res && res.top){
+        res.top.forEach(function(h){
+          var p = P[h.i], pk = picked.has(h.i);
+          ctx.setLineDash(pk ? [] : [3, 4]);
+          ctx.lineWidth = pk ? 1.3 : 1;
+          ctx.strokeStyle = pk ? 'rgba(154,156,255,' + (.4 + .55 * Math.min(1, h.s / SCALE)).toFixed(2) + ')' : 'rgba(109,111,242,.22)';
+          ctx.beginPath(); ctx.moveTo(q.x * W, q.y * H); ctx.lineTo(p.x * W, p.y * H); ctx.stroke();
+        });
+        ctx.setLineDash([]);
+      }
+      P.forEach(function(p, i){
+        var x = p.x * W, y = p.y * H;
+        if (picked.has(i)){
+          ctx.fillStyle = 'rgba(154,156,255,.2)'; ctx.beginPath(); ctx.arc(x, y, 9, 0, 6.283); ctx.fill();
+          ctx.fillStyle = '#DADBFF'; ctx.beginPath(); ctx.arc(x, y, 3, 0, 6.283); ctx.fill();
+        } else {
+          ctx.fillStyle = near.has(i) ? 'rgba(154,156,255,.6)' : 'rgba(154,156,255,.28)';
+          ctx.beginPath(); ctx.arc(x, y, 2, 0, 6.283); ctx.fill();
+        }
+      });
+      if (res){
+        ctx.strokeStyle = res.picked && res.picked.length ? 'rgba(154,156,255,.7)' : 'rgba(240,180,92,.8)';
+        ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(q.x * W, q.y * H, 8, 0, 6.283); ctx.stroke();
+        ctx.fillStyle = res.picked && res.picked.length ? '#9A9CFF' : '#F0B45C';
+        ctx.beginPath(); ctx.arc(q.x * W, q.y * H, 2.5, 0, 6.283); ctx.fill();
+      }
+    }
+    function show(r){
+      res = r;
+      var tx = .5, ty = .52;
+      if (r && r.picked && r.picked.length){
+        var sw = 0, sx = 0, sy = 0;
+        r.picked.forEach(function(h){ sx += P[h.i].x * h.s; sy += P[h.i].y * h.s; sw += h.s; });
+        tx = sx / sw; ty = sy / sw;
+      }
+      var fx = q.x, fy = q.y, start = performance.now();
+      cancelAnimationFrame(raf);
+      (function step(now){
+        var k = reduce ? 1 : Math.min(1, (now - start) / 650), e = 1 - Math.pow(1 - k, 3);
+        q.x = fx + (tx - fx) * e; q.y = fy + (ty - fy) * e;
+        draw();
+        if (k < 1) raf = requestAnimationFrame(step);
+      })(start);
+    }
+    size();
+    window.addEventListener('resize', function(){ clearTimeout(size.t); size.t = setTimeout(size, 150); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+    return {show:show};
+  })();
+
+  /* ----- retrieval trace panel ----- */
+  var stateEl = $('t-state'), termsEl = $('t-terms'), hitsEl = $('t-hits'), composeEl = $('t-compose');
+  hitsEl.style.setProperty('--th', (MIN_SCORE / SCALE * 100).toFixed(1) + '%');
+  function setState(text, cls){ stateEl.textContent = text; stateEl.className = 'state' + (cls ? ' ' + cls : ''); }
+  function renderTrace(res, kind){
+    termsEl.textContent = '';
+    res.terms.forEach(function(w){ termsEl.appendChild(el('span', null, w)); });
+    res.syn.slice(0, 6).forEach(function(w){ termsEl.appendChild(el('span', 'x', '~' + w)); });
+    if (!res.terms.length && !res.syn.length) termsEl.appendChild(el('span', 'x', 'no known terms'));
+    hitsEl.textContent = '';
+    var picked = new Set(res.picked.map(function(h){ return h.i; }));
+    res.top.forEach(function(h, r){
+      var row = el('div', 'hit' + (picked.has(h.i) ? ' pick' : ''));
+      row.appendChild(el('span', 't', (r + 1) + '. ' + h.c.title));
+      row.appendChild(el('span', 's', h.s.toFixed(2)));
+      var bar = el('span', 'bar'), fill = el('i');
+      fill.style.width = '0%';
+      bar.appendChild(fill); row.appendChild(bar); hitsEl.appendChild(row);
+      requestAnimationFrame(function(){ fill.style.width = Math.max(1.5, Math.min(100, h.s / SCALE * 100)).toFixed(1) + '%'; });
+    });
+    var ms = res.ms < 1 ? '<1 ms' : res.ms.toFixed(1) + ' ms';
+    if (kind === 'done'){
+      setState('Grounded', 'done');
+      composeEl.textContent = 'Assembled from ' + res.picked.length + ' chunk' + (res.picked.length > 1 ? 's' : '') + ' above the ' + MIN_SCORE + ' threshold · no LLM call · ' + ms;
+    } else {
+      setState('Refused', 'refused');
+      composeEl.textContent = 'Best score ' + res.best.toFixed(2) + ' is below the ' + MIN_SCORE + ' threshold, so the assistant declines instead of guessing · ' + ms;
+    }
+    map.show(res);
+  }
+
+  /* ----- chat ----- */
+  function typeInto(node, text, done){
+    if (reduce){ node.textContent = text; done(); return; }
+    var parts = text.split(/(\s+)/), i = 0;
+    (function step(){
+      var n = 0;
+      while (i < parts.length && n < 4){ node.textContent += parts[i++]; n++; }
+      scrollDown();
+      if (i < parts.length) setTimeout(step, 18); else done();
+    })();
+  }
+  function stream(msg, paras, done){
+    var k = 0;
+    (function next(){
+      if (k >= paras.length){ done(); return; }
+      var p = el('p'), para = paras[k];
+      msg.appendChild(p);
+      typeInto(p, para.text, function(){
+        if (para.cite) p.appendChild(el('sup', 'cite', '[' + para.cite + ']'));
+        k++; next();
+      });
+    })();
+  }
+  function ask(q){
+    q = (q || '').trim();
+    if (!q || busy) return;
+    busy = true; sendBtn.disabled = true;
+    input.value = ''; autosize();
+    msgs.appendChild(el('div', 'msg user', q));
+    var bot = el('div', 'msg bot'), dots = el('span', 'dots');
+    dots.appendChild(el('i')); dots.appendChild(el('i')); dots.appendChild(el('i'));
+    bot.appendChild(dots); msgs.appendChild(bot); scrollDown();
+    setState('Searching', 'run');
+
+    var greet = /^(hi+|hello|hey|hola|salam|salaam|namaste|yo)\b/i.test(q) && q.split(/\s+/).length <= 3;
+    var res = greet ? null : search(q);
+
+    setTimeout(function(){
+      bot.textContent = '';
+      var paras, sources = [];
+      if (greet){
+        paras = [{text:"Hi! Ask me anything about Hammadur's work: his projects, experience, skills, or availability."}];
+        setState('Idle'); termsEl.textContent = ''; termsEl.appendChild(el('span', 'x', 'greeting · no retrieval needed'));
+        composeEl.textContent = 'Greeting detected, so no search was run.';
+      } else if (!res.picked.length){
+        paras = [{text:"I can only answer from Hammadur's portfolio data, and nothing there matches that question closely enough. Try asking about his projects, experience, or skills, or email him directly at hammadurrahman171@gmail.com."}];
+        renderTrace(res, 'refused');
+      } else {
+        paras = res.picked.map(function(h, i){ return {text:h.c.t, cite:i + 1}; });
+        sources = res.picked;
+        renderTrace(res, 'done');
+      }
+      stream(bot, paras, function(){
+        if (sources.length){
+          var s = el('div', 'sources');
+          s.appendChild(el('span', 'lbl', 'Sources'));
+          sources.forEach(function(h, i){ var a = el('a', null, '[' + (i + 1) + '] ' + h.c.title); a.href = h.c.src; s.appendChild(a); });
+          bot.appendChild(s); scrollDown();
+        }
+        busy = false; sendBtn.disabled = false;
+      });
+    }, reduce ? 0 : 420);
+  }
+
+  function autosize(){ input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; }
+  input.addEventListener('input', autosize);
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); ask(input.value); }
+  });
+  form.addEventListener('submit', function(e){ e.preventDefault(); ask(input.value); });
+  [].slice.call(document.querySelectorAll('#ask-chips button')).forEach(function(b){
+    b.addEventListener('click', function(){ ask(b.textContent); });
+  });
 })();
 </script>
 </body>
